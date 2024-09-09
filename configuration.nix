@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-# To install a package, run in terminal
+# To update this file, run in terminal
 # sudo nixos-rebuild switch 
 
 { config, pkgs, ... }:
@@ -53,7 +53,6 @@
   services.xserver.desktopManager.gnome.enable = false;
 
   # Enable the KDE Desktop Environment.
-  # services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
   
