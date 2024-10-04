@@ -8,9 +8,11 @@ Procurar pacotes no
 
  Colocar dentro de
 
->   environment.systemPackages = []
+  > environment.systemPackages = [
+  >
+  >  ] 
 
 
 Após isso, fazer uma nova snapshot com
 
-> sudo nixos-rebuild switch
+ `sudo nixos-rebuild switch`
