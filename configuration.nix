@@ -1,9 +1,8 @@
+# Daniel's config NixOS
+
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-# To update this file, run in terminal
-# sudo nixos-rebuild switch 
 
 { config, pkgs, ... }:
 
@@ -46,16 +45,13 @@
   };
 
   # Enable the X11 windowing system.
+  # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = false;
-  services.xserver.desktopManager.gnome.enable = false;
-
-  # Enable the KDE Desktop Environment.
+  # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-  
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "br";
@@ -93,6 +89,7 @@
     description = "daniel di lorenzo";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+      kdePackages.kate
     #  thunderbird
     ];
   };
@@ -103,18 +100,57 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Activate Bluetooth
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  
+  # Enable Steam
+  programs.steam = {
+  enable = true;
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  
-  # Search in
-  # https://search.nixos.org/packages
-    
   environment.systemPackages = with pkgs; [
+    pkgs.android-tools
+    pkgs.chromium
+    pkgs.fastfetch
+    pkgs.ffmpeg_7
+    pkgs.fira-code
+    pkgs.flatpak
+    pkgs.git
+    pkgs.gnome.gnome-boxes
+    pkgs.google-chrome
+    pkgs.jetbrains-mono
+    pkgs.kdePackages.elisa
+    pkgs.kdePackages.isoimagewriter
+    pkgs.kdePackages.kdeconnect-kde
+    pkgs.kdePackages.kpat
+    pkgs.kdePackages.ktorrent
+    pkgs.kdePackages.kweather
+    pkgs.kdePackages.partitionmanager
+    pkgs.kdePackages.xdg-desktop-portal-kde
+    pkgs.melonDS
+    pkgs.mesa
+    pkgs.mgba
+    pkgs.nerdfonts
+    pkgs.nodejs_22
+    pkgs.steam
+    pkgs.spotify
+    pkgs.telegram-desktop
+    pkgs.vlc
+    pkgs.vscode
+    pkgs.xdg-desktop-portal-gnome
     pkgs.zsh
-    pkgs.isoimagewriter
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
   ];
+
+ # Rebuild system with:
+ # nixos sudo nixos-rebuild switch
+
+ # Remove Packages
+ # services.xserver.excludePackages = [ 
+ # pkgs.xterm 
+ # ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
