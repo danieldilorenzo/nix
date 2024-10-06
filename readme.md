@@ -16,3 +16,10 @@ Procurar pacotes no
 Após isso, fazer uma nova snapshot com
 
  `sudo nixos-rebuild switch`
+
+
+Atualizar
+
+`nixos-rebuild switch --upgrade` 
+
+[Ativar upgrade automático](https://nlewo.github.io/nixos-manual-sphinx/installation/upgrading.xml.html#automatic-upgrades)
