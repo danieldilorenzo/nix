@@ -29,3 +29,23 @@ Após isso, fazer uma nova snapshot com
 > sudo nix-collect-garbage -d
 > 
 > sudo nixos-rebuild switch
+
+## Unstable branch
+
+> nix-channel --add https://channels.nixos.org/nixos-unstable nixos
+>
+> nixos-rebuild switch --upgrade
+
+## Stable Branch
+
+> nix-channel --add https://channels.nixos.org/nixos-24.05 nixos
+>
+> nixos-rebuild switch --upgrade
+
+
+
+
+
+## Fontes
+
+- https://nixos.org/manual/nixos/unstable/
