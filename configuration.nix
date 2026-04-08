@@ -51,6 +51,13 @@
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "daniel";
 
+  # --- CONFIGURAÇÃO DO SHELL ---
+  programs.zsh.enable = true; # Habilita o ZSH no sistema
+  
+  # Define o ZSH como shell padrão para o seu usuário
+  users.users.daniel.shell = pkgs.zsh;
+
+
   # --- PACOTES DO SISTEMA ---
   environment.systemPackages = with pkgs; [
     # Essenciais para o sistema não "sumir" com nada
@@ -78,6 +85,7 @@
     wget
     nodejs_25
     zsh
+    oh-my-zsh
     papirus-icon-theme
     catppuccin-papirus-folders
     reversal-icon-theme
