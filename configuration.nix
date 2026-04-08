@@ -63,7 +63,6 @@
     # Seus Apps
     google-chrome
     vscode
-    steam
     git
     fastfetch
     pciutils               # Útil para ver hardware na VM
