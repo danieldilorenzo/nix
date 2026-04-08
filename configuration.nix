@@ -21,7 +21,14 @@
   # --- LOCALIZAÇÃO E IDIOMA ---
   time.timeZone = "America/Sao_Paulo";
   i18n.defaultLocale = "pt_BR.UTF-8";
-  
+
+  # Fixa o caminho do nixpkgs para evitar erros de canal sumido
+    nix.nixPath = [
+    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
+    "nixos-config=/etc/nixos/configuration.nix"
+    "/nix/var/nix/profiles/per-user/root/channels"
+  ];
+
   # Garante que as mensagens de erro de Locale sumam de vez
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "pt_BR.UTF-8";
