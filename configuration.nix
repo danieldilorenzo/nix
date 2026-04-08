@@ -134,5 +134,15 @@
   };
 
 
+  # --- ATUALIZAR BRANCH KDE PARA UNSTABLE ---
+  # sudo nix-channel --update && sudo nixos-rebuild switch --upgrade --fallback
+
+  # Limpar lixo e snapshots antigas do sistema
+  # Só usar depois de reiniciar na mais atual
+  # sudo nix-collect-garbage -d
+
+
+
+  # NUNCA ALTERAR A LINHA ABAIXO, ELA É IMPORTANTE PARA INFORMAR PRO SISTEMA, QUAL FOI A VERSÃO ORIGINAL QUE FOI INSTALADA
   system.stateVersion = "24.11"; 
 }
