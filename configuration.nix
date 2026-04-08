@@ -49,7 +49,7 @@
 
   # --- AUTOLOGIN ---
   services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "dani";
+  services.displayManager.autoLogin.user = "daniel";
 
   # --- PACOTES DO SISTEMA ---
   environment.systemPackages = with pkgs; [
@@ -59,14 +59,56 @@
     kdePackages.systemsettings
     kdePackages.ark        # Para descompactar arquivos
     kdePackages.kate       # Editor de texto gráfico melhor que nano
-    
+    kdePackages.plasma-workspace-wallpapers
+    kdePackages.partitionmanager
+    kdePackages.isoimagewriter
+    kdePackages.kdeconnect-kde
+    kdePackages.elisa
+    kdePackages.ktorrent
+    kdePackages.kweather
+
     # Seus Apps
     google-chrome
     vscode
     git
     fastfetch
     pciutils               # Útil para ver hardware na VM
+    thermald
+    android-tools
+    wget
+    nodejs_25
+    zsh
+    papirus-icon-theme
+    catppuccin-papirus-folders
+    reversal-icon-theme
+    flatpak
   ];
+
+  fonts.packages = with pkgs; [
+    fira
+    fira-code
+    google-fonts
+    nerd-fonts.jetbrains-mono
+  ];
+
+ # --- HARDWARE E PERFORMANCE ---
+  hardware.cpu.intel.updateMicrocode = true;
+  hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
+  zramSwap.enable = true;
+  
+  nix.settings = {
+    max-jobs = "auto";
+    cores = 0;
+    experimental-features = [ "nix-command" "flakes" ];
+  };
+
+ # --- GRÁFICOS AMD (RX 6600) ---  # Só descomentar se usar no Xeon
+ # hardware.graphics = {
+ #   enable = true;
+ #   enable32Bit = true; # Essencial para Steam / Jogos antigos
+ # };
+ # services.xserver.videoDrivers = [ "amdgpu" ];
 
   # --- CONFIGURAÇÃO DE USUÁRIO ---
   users.users.daniel = {
@@ -76,6 +118,10 @@
     # Opcional: define a senha inicial como "nixos" para não travar no primeiro login
     initialPassword = "nixos"; 
   };
+
+  # --- HABILITAR FLATPAK
+  services.flatpak.enable = true;
+
 
   # --- CONFIGURAÇÕES EXTRAS ---
   nixpkgs.config.allowUnfree = true; # Para Chrome e Steam funcionarem
@@ -87,9 +133,6 @@
     dedicatedServer.openFirewall = true; # Abre portas para servidores dedicados
   };
 
-
-  # Garante que o comando "nix-command" e "flakes" funcionem se você quiser testar depois
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.stateVersion = "24.11"; 
 }
